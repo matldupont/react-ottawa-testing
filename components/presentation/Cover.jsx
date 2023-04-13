@@ -16,10 +16,13 @@ export default function Cover() {
           <div className="text-center">{`Hi, I'm Mat Dupont 👋`}</div>
         </h1>
         <ul className="mb-8 text-start">
-          <li>@ReactOttawa 🤘</li>
+          <li>Co-organizer @ ReactOttawa 🤘</li>
           <li>Senior Product Engineer @ GlossGenius</li>
           <li>
             <i>Prev. Auth0/Okta Fine Grained Authorization - OpenFGA</i>
+          </li>
+          <li>
+            <i>Technical Lead @ Rebel.com</i>
           </li>
         </ul>
 

@@ -39,16 +39,14 @@ They don't give a shit.
 
 <Steps>
   <Step><h2>Has this ever happened to you?</h2></Step>
-  <Step><p>New project, new requirements</p></Step>
-  <Step><p>New feature, new package versions</p></Step>
+  <Step><p>New project in a monolith app</p></Step>
+  <Step><p>New feature needing different package versions</p></Step>
   <Step><p>Many teams, one codebase</p></Step>
 </Steps>
 
 ---
 
-## Check out this app
-
-How many parts to this app?
+## The infamous demo 😈
 
 ---
    
@@ -161,7 +159,7 @@ import { Booking } from "booking/BookingApp";
 ---
 
 <Steps>  
-  <Step><p>I boils down to JS modules with everything required to run</p></Step>
+  <Step><p>Boil down to JS modules with everything required to run</p></Step>
   <Step><p>... with code splitting!</p></Step>
 </Steps>
 
@@ -169,6 +167,12 @@ import { Booking } from "booking/BookingApp";
 ---
 
 # Huh? Show me!
+
+---
+
+# I lied. 
+
+It's not quite that simple
 
 ---
  
@@ -185,6 +189,11 @@ function mount(el) {
 }
 ```
 
+```js
+import { mount } from "booking/BookingApp";
+```
+
+
 ---
 
 ## Mounting the apps
@@ -200,6 +209,8 @@ export const mount = (el) => {
 };
 ```
 ---
+
+
 
 ## Mounting the apps
 
@@ -222,8 +233,7 @@ export default function BookingApp() {
 
 ---
 
-## Using the app
-with code splitting
+## Further code splitting
 
 ```jsx
 const BookingLazy = React.lazy(() => import("./components/BookingApp"));
@@ -246,8 +256,8 @@ const BookingLazy = React.lazy(() => import("./components/BookingApp"));
   <Step><h2>Empowering Teams</h2></Step>
   <Step><p>Framework agnostic</p></Step>
   <Step><p>Version tolerant</p></Step>
-  <Step><p>Own the outcome</p></Step>
   <Step><p>Independent CICD</p></Step>
+  <Step><p>Own the outcome</p></Step>
   <Step><p>A/B Testing</p></Step>
 </Steps>
 
@@ -267,10 +277,6 @@ const BookingLazy = React.lazy(() => import("./components/BookingApp"));
 # Navigation!?
 
 A combination a of Browser and Memory routers that need to be synchronized.
-
----
-
-## Time check!
 
 ---
 
