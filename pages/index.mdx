@@ -1,0 +1,280 @@
+
+<SlidePage>
+
+# 👋
+
+---
+
+# Where do we begin?
+
+---
+
+<Steps>
+  <Step><h1>Users</h1></Step>
+  <Step><p>Why are they here?</p></Step>
+  <Step><p>What do they need?</p></Step>
+  <Step><p>What do they really care about?</p></Step>
+  <Step><p>Your stack?!</p></Step>
+</Steps>
+
+---
+
+# Hah! You wish.
+
+They don't give a shit.
+
+---
+
+## So who cares?!
+
+---
+
+<Steps>
+  <Step><p>You do.</p></Step>
+  <Step><p>Your team does.</p></Step>
+  <Step><p>Your boss might.</p></Step>
+</Steps>
+
+---
+
+<Steps>
+  <Step><h2>Has this ever happened to you?</h2></Step>
+  <Step><p>New project, new requirements</p></Step>
+  <Step><p>New feature, new package versions</p></Step>
+  <Step><p>Many teams, one codebase</p></Step>
+</Steps>
+
+---
+
+## Check out this app
+
+How many parts to this app?
+
+---
+   
+# Microfrontends   
+
+... WTF?!
+
+---
+
+<Cover />
+
+---
+
+## Back to it!
+
+# Microfrontends
+
+---
+
+Think:
+## Frontend for microservices
+
+---
+<Steps>
+  <Step><p>A type of architecture where web apps are divided into different modules</p></Step>
+  <Step><p>Parts are implemented autonomously</p></Step>
+  <Step><p>Provide frontend teams the same level of flexibility and speed that microservices provide to backend teams</p></Step>
+</Steps>
+
+---
+
+## *Build-time vs Run-time integration
+
+---
+
+The most popular method... right now
+
+## Module Federation
+
+---
+
+## Module Federation !== Microfrontend
+
+A transport layer, nothing more.
+
+---
+
+
+<Steps>
+  <Step><h2>A mechanism to</h2></Step>
+  <Step><p>Tell an app that part or all of it should be exposed as a module</p></Step>
+  <Step><p>Tell another app where to find exposed modules to consume</p></Step>
+</Steps>
+
+---
+
+Exposing a module (with Wepack):
+
+```js
+const packageJson = require("./package.json");
+
+module.exports = {
+  ...
+  plugins: [
+      new ModuleFederationPlugin({
+        name: "booking",
+        filename: "remoteEntry.js",
+        exposes: {
+          "./BookingApp": "./src/bootstrap",
+        },
+        shared: packageJson.dependencies,
+      }),
+      ...
+  ],
+}
+```
+
+---
+
+Consuming a module from a container App:
+
+```js
+const packageJson = require("./package.json");
+
+module.exports = {
+  ...
+  plugins: [
+      new ModuleFederationPlugin({
+        name: "container",
+        remotes: {
+          booking: "booking@http://localhost:8081/remoteEntry.js",
+          settings: "settings@http://localhost:8082/remoteEntry.js",
+        },
+        shared: packageJson.dependencies,
+      }), 
+      ...
+  ],
+}
+```
+
+---
+
+## Becomes a regular import!
+
+
+```js
+import { Booking } from "booking/BookingApp";
+```
+
+---
+
+<Steps>  
+  <Step><p>I boils down to JS modules with everything required to run</p></Step>
+  <Step><p>... with code splitting!</p></Step>
+</Steps>
+
+
+---
+
+# Huh? Show me!
+
+---
+ 
+## Mounting the apps
+
+A React child app:
+
+```jsx
+import ReactDOM from "react-dom";
+import BookingApp from "./app";
+
+function mount(el) {  
+  ReactDOM.render(<BookingApp history={history} />, el);
+}
+```
+
+---
+
+## Mounting the apps
+
+A SolidJS child app:
+
+```jsx
+import { render } from "solid-js/web";
+import { Settings } from "./components/Settings";
+
+export const mount = (el) => {
+  render(Settings, el);
+};
+```
+---
+
+## Mounting the apps
+
+The container app:
+
+```jsx
+import * as React from "react";
+import { mount } from "booking/BookingApp";
+
+export default function BookingApp() {
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    mount(ref.current);
+  }, []);
+
+  return <div ref={ref} />;
+}
+```
+
+---
+
+## Using the app
+with code splitting
+
+```jsx
+const BookingLazy = React.lazy(() => import("./components/BookingApp"));
+
+...
+  <React.Suspense fallback={<div>LOADING....</div>}>
+    <BookingLazy />
+  </React.Suspense>
+...
+
+```
+
+---
+
+## Hold the phone! SolidJS!?
+
+---
+
+<Steps>  
+  <Step><h2>Empowering Teams</h2></Step>
+  <Step><p>Framework agnostic</p></Step>
+  <Step><p>Version tolerant</p></Step>
+  <Step><p>Own the outcome</p></Step>
+  <Step><p>Independent CICD</p></Step>
+  <Step><p>A/B Testing</p></Step>
+</Steps>
+
+---
+
+<Steps>  
+  <Step><h2>Drawbacks</h2></Step>
+  <Step><p>Unavoidably more JS over the wire</p></Step>
+  <Step><p>Yes, even with shared dependencies</p></Step>
+  <Step><p>Some level of increased complexity</p></Step>
+  <Step><p><div>Not suitable for small and medium size apps</div><div> with a single framework</div></p></Step>
+  <Step><p><strong>Navigation gets weird!</strong></p></Step>
+</Steps>
+
+---
+
+# Navigation!?
+
+A combination a of Browser and Memory routers that need to be synchronized.
+
+---
+
+## Time check!
+
+---
+
+# I've been Mat. Thanks ✌️
+
+
+</SlidePage>
