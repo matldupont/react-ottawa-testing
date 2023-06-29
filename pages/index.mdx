@@ -5,282 +5,226 @@
 
 ---
 
-# Where do we begin?
+![My family](/family.jpg)
+
+---
+
+![Portland, ME](/portland.jpg)
+
+---
+
+# I have testing on the 🧠
+
+---
+
+## Releasing a feature is kinda like taking a road trip.
+(stay with me...)
 
 ---
 
 <Steps>
-  <Step><h1>Users</h1></Step>
-  <Step><p>Why are they here?</p></Step>
-  <Step><p>What do they need?</p></Step>
-  <Step><p>What do they really care about?</p></Step>
-  <Step><p>Your stack?!</p></Step>
+  <Step><h1>First!</h1></Step>
+  <Step><p>Gotta pack a bag</p></Step>
+  <Step><p>3 bags, actually.</p></Step>
+  <Step><p>Some similar items, some different</p></Step>
 </Steps>
 
 ---
 
-# Hah! You wish.
+## The bags are your components, functions and hooks
 
-They don't give a shit.
-
----
-
-## So who cares?!
+**Unit tests** will ensure they're packed properly.
 
 ---
 
 <Steps>
-  <Step><p>You do.</p></Step>
-  <Step><p>Your team does.</p></Step>
-  <Step><p>Your boss might.</p></Step>
+  <Step><h2>Each bag needs a list</h2></Step>
+  <Step><p>Writing as I pack could work, but it may slow me down</p></Step>
+  <Step><p>I can write my daughter's list, but she can pack</p></Step>
+  <Step><p>I'm only packing next week, but I can make my list now</p></Step>
+  <Step><p>I can effortlessly add/remove items from the list until I pack</p></Step>
 </Steps>
 
 ---
 
 <Steps>
-  <Step><h2>Has this ever happened to you?</h2></Step>
-  <Step><p>New project in a monolith app</p></Step>
-  <Step><p>New feature needing different package versions</p></Step>
-  <Step><p>Many teams, one codebase</p></Step>
+  <Step><h2>The list is your spec file</h2></Step>
+  <Step><p>Pure TDD can be more effective, but not absolutely necessary</p></Step>
+  <Step><p>A PM, QA or a team Lead can write the spec.</p></Step>
+  <Step><p>We can write it early and make it easy on the dev process</p></Step>
+  <Step><p>It's faster and cheaper to write a component or function with a defined spec</p></Step>
 </Steps>
 
 ---
 
-## The infamous demo 😈
-
----
-   
-# Microfrontends   
-
-... WTF?!
+# SHIFT LEFT!
 
 ---
 
-<Cover />
+# How do we write unit tests!?
 
 ---
 
-## Back to it!
+## Second!
 
-# Microfrontends
-
----
-
-Think:
-## Frontend for microservices
+![Packed](/packed.jpg)
 
 ---
-<Steps>
-  <Step><p>A type of architecture where web apps are divided into different modules</p></Step>
-  <Step><p>Parts are implemented autonomously</p></Step>
-  <Step><p>Provide frontend teams the same level of flexibility and speed that microservices provide to backend teams</p></Step>
-</Steps>
-
----
-
-## *Build-time vs Run-time integration
-
----
-
-The most popular method... right now
-
-## Module Federation
-
----
-
-## Module Federation !== Microfrontend
-
-A transport layer, nothing more.
-
----
-
 
 <Steps>
-  <Step><h2>A mechanism to</h2></Step>
-  <Step><p>Tell an app that part or all of it should be exposed as a module</p></Step>
-  <Step><p>Tell another app where to find exposed modules to consume</p></Step>
+  <Step><h1>Load the car</h1></Step>
+  <Step><p>I don't care what's in the bags</p></Step>
+  <Step><p>Do they all fit?</p></Step>
+  <Step><p>Should some be accessible?</p></Step>
+  <Step><p>Am I strapping a paddleboard to the roof?</p></Step>
+  <Step><p>Shit, I need another list</p></Step>
 </Steps>
 
 ---
 
-Exposing a module (with Wepack):
-
-```js
-const packageJson = require("./package.json");
-
-module.exports = {
-  ...
-  plugins: [
-      new ModuleFederationPlugin({
-        name: "booking",
-        filename: "remoteEntry.js",
-        exposes: {
-          "./BookingApp": "./src/bootstrap",
-        },
-        shared: packageJson.dependencies,
-      }),
-      ...
-  ],
-}
-```
-
----
-
-Consuming a module from a container App:
-
-```js
-const packageJson = require("./package.json");
-
-module.exports = {
-  ...
-  plugins: [
-      new ModuleFederationPlugin({
-        name: "container",
-        remotes: {
-          booking: "booking@http://localhost:8081/remoteEntry.js",
-          settings: "settings@http://localhost:8082/remoteEntry.js",
-        },
-        shared: packageJson.dependencies,
-      }), 
-      ...
-  ],
-}
-```
-
----
-
-## Becomes a regular import!
-
-
-```js
-import { Booking } from "booking/BookingApp";
-```
-
----
-
-<Steps>  
-  <Step><p>Boil down to JS modules with everything required to run</p></Step>
-  <Step><p>... with code splitting!</p></Step>
+<Steps>
+  <Step><h2>A list of bags, not their contents</h2></Step>
+  <Step><p>My wife can write the list, I can load the car</p></Step>
+  <Step><p>Focused solely on loading the car</p></Step>
+  <Step><p>Positioning the bags in relation to each other</p></Step>
+  <Step><p>I don't need to be driving to know if it'll work</p></Step>
 </Steps>
 
+---
+
+## How the bags fit in car - Integration Tests
+
+**Integration tests** will ensure the bags all fit as an integrated system of units in my car.
 
 ---
 
-# Huh? Show me!
+<Steps>
+  <Step><h2>Again, the list is your spec file</h2></Step>
+  <Step><p>Does the feature work with all the parts integrated?</p></Step>
+  <Step><p>Does selecting a service show the booking header?</p></Step>
+  <Step><p>Does my service list change if I choose a professional?</p></Step>
+  <Step><p>I don't actually need to get the list from the server</p></Step>
+  <Step><p>Again, I can write this spec early.</p></Step>
+</Steps>
 
 ---
 
-# I lied. 
-
-It's not quite that simple
+## The cost of waiting
 
 ---
+
+<Steps>
+  <Step><h2>Without a packing list</h2></Step>
+  <Step><p>Packing the bags while they're in the car?!</p></Step>
+  <Step><p>One massive list with everything for every bag, all at once?!</p></Step>
+  <Step><p>I'd spend more time walking than packing!</p></Step>
+  <Step><p>A tedious, error-prone nightmare.</p></Step>
+</Steps>
+
+---
+
+Integration tests shouldn't test the details of the units, only that they work together.
  
-## Mounting the apps
-
-A React child app:
-
-```jsx
-import ReactDOM from "react-dom";
-import BookingApp from "./app";
-
-function mount(el) {  
-  ReactDOM.render(<BookingApp history={history} />, el);
-}
-```
-
-```js
-import { mount } from "booking/BookingApp";
-```
-
+Otherwise, we have a ton of complicated tests that take longer to write and run.
+ 
+Re-testing details that should already be nailed down.
 
 ---
 
-## Mounting the apps
-
-A SolidJS child app:
-
-```jsx
-import { render } from "solid-js/web";
-import { Settings } from "./components/Settings";
-
-export const mount = (el) => {
-  render(Settings, el);
-};
-```
----
-
-
-
-## Mounting the apps
-
-The container app:
-
-```jsx
-import * as React from "react";
-import { mount } from "booking/BookingApp";
-
-export default function BookingApp() {
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    mount(ref.current);
-  }, []);
-
-  return <div ref={ref} />;
-}
-```
+# SHIFT LEFT, DAMMIT!
 
 ---
 
-## Further code splitting
-
-```jsx
-const BookingLazy = React.lazy(() => import("./components/BookingApp"));
-
-...
-  <React.Suspense fallback={<div>LOADING....</div>}>
-    <BookingLazy />
-  </React.Suspense>
-...
-
-```
+# How do we write integration tests!?
 
 ---
 
-## Hold the phone! SolidJS!?
-
----
-
-<Steps>  
-  <Step><h2>Empowering Teams</h2></Step>
-  <Step><p>Framework agnostic</p></Step>
-  <Step><p>Version tolerant</p></Step>
-  <Step><p>Independent CICD</p></Step>
-  <Step><p>Own the outcome</p></Step>
-  <Step><p>A/B Testing</p></Step>
+<Steps>
+  <Step><h1>Third!</h1></Step>
+  <Step><p>Getting where I'm going</p></Step>
+  <Step><p>Do I have my route planned out?</p></Step>
+  <Step><p>Do I have enough gas for the trip?</p></Step>
+  <Step><p>Are my pit stops planned?</p></Step>
 </Steps>
 
 ---
 
-<Steps>  
-  <Step><h2>Drawbacks</h2></Step>
-  <Step><p>Unavoidably more JS over the wire</p></Step>
-  <Step><p>Yes, even with shared dependencies</p></Step>
-  <Step><p>Some level of increased complexity</p></Step>
-  <Step><p><div>Not suitable for small and medium size apps</div><div> with a single framework</div></p></Step>
-  <Step><p><strong>Navigation gets weird!</strong></p></Step>
+<Steps>
+  <Step><h2>An itinerary (... another list)</h2></Step>
+  <Step><p>A short one</p></Step>
+  <Step><p>What's in the bags? IDGAF</p></Step>
+  <Step><p>If I can see out the back window, I trust the rest is good.</p></Step>
+  <Step><p>Rubber hits the road and we're off</p></Step>
 </Steps>
 
 ---
 
-# Navigation!?
+## The trip itself - End-to-End Testing
 
-A combination a of Browser and Memory routers that need to be synchronized.
+**End-to-End tests** validate the functionality, performance, and reliability of the software as a whole, including all the integrated components and external dependencies*.
 
 ---
 
-# I've been Mat. Thanks ✌️
+*There are a few flavours of E2E Testing.
 
+Post-deployment production E2E Tests and CI/CD E2E Tests. 
+
+---
+
+<Steps>
+  <Step><h2>The itinerary is your spec</h2></Step>
+  <Step><p>Comparatively short list of items to check</p></Step>
+  <Step><p>Run in a headless browser/simulator environment</p></Step>
+  <Step><p>Validates user flows a layer above integration tests</p></Step>
+  <Step><p>Real world scenario testing</p></Step>
+</Steps>
+
+---
+
+# How do we write end-to-end tests!?
+
+---
+
+![Beer](/beer.jpg)
+
+---
+
+## Shit...
+
+---
+
+<Steps>
+  <Step><h1>We forgot the cooler! Turn back!</h1></Step>
+  <Step><p>Where is it? The basement ...I think</p></Step>
+  <Step><p>Gross! It has old hotdogs in it 🤢</p></Step>
+  <Step><p>Car's full! Rearrange and now I can barely see.</p></Step>
+  <Step><p>Brewery has no ice and we forgot to get some on the way. </p></Step>
+</Steps>
+
+---
+
+# SHIFT F^@$%ING LEFT!
+
+---
+
+<Steps>
+  <Step><h1>Compounding Effects</h1></Step>
+  <Step><p>The later we test things, the slower it is</p></Step>
+  <Step><p>Late changes have wider effects on quality</p></Step>
+  <Step><p>Much more costly</p></Step>
+  <Step><p>Way more stress and risk of mistakes</p></Step>
+</Steps>
+
+
+---
+
+
+# The Testing Pyramid
+
+![Testing Pyramid](/pyramid.png)
+
+---
+
+# Thanks! ✌️
 
 </SlidePage>

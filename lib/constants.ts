@@ -5,17 +5,17 @@ import { arbitrum, goerli, hardhat, mainnet, optimism, polygon, sepolia } from '
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 export const SITE_CANONICAL = 'https://slides.turboeth.xyz/'
 export const SITE_EMOJI = '📖'
-export const SITE_NAME = 'Microfrontends'
+export const SITE_NAME = 'Testing'
 export const SITE_TAGLINE = '... WTF?!'
-export const SITE_TITLE = 'MatDupont - Microfrontends ...WTF?!'
-export const SITE_DESCRIPTION = 'Microfrontends Slide Deck'
+export const SITE_TITLE = 'MatDupont - Testing ...WTF?!'
+export const SITE_DESCRIPTION = 'Testing Slide Deck'
 export const SOCIAL_GITHUB = 'matldupont'
 
 export const AUTHOR_NAME = '@MatDupont'
 export const AUTHOR_URL = 'https://matdupont.dev'
 export const AUTHOR_IMAGE_URL = 'https://raw.githubusercontent.com/matldupont/matdupont-dev/main/src/assets/headshot-400w.jpeg'
 
-export const PRESENTATION_DATE = 'OttawaJS - April 2023'
+export const PRESENTATION_DATE = 'GlossGenius - June 2023'
 export const PRESENTATION_MODES = {
   SLIDESHOW: 'slideshow',
   SPEAKER: 'speaker',
